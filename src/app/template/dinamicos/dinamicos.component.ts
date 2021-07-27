@@ -26,6 +26,17 @@ export class DinamicosComponent{
     ]
   }
 
+  eliminar( id: number ): void {
+    console.log(id);
+    
+    var index = this.persona.favoritos.map(x => {
+      return x.id;
+    }).indexOf(id);
+    
+    this.persona.favoritos.splice(index, 1);
+    
+  }
+
 
   guardar() {
     console.log('formulario posteado');
