@@ -34,7 +34,11 @@
                            ngModel
                            name="precio"
                            class="form-control"
-                           placeholder="Nombre del producto">
+                           placeholder="Nombre del producto"
+                           min="0" 
+                           required>
+                    <!-- Sí que funciona ese min="0" es ya una directiva propia de angular, a pesar de que Herrada
+                    creía que no la incluirían tan pronto  -->
                     <span class="form-text text-danger"
                            *ngIf="precioValido()">
                          El precio debe ser 0 ó mayor
@@ -50,7 +54,10 @@
                            ngModel
                            name="existencias"
                            class="form-control"
-                           placeholder="Nombre del producto">
+                           customMin
+                           [minimo]="0"
+                           placeholder="Nombre del producto"
+                           required>
                 </div>
             </div>
 
@@ -82,6 +89,9 @@
 
         <span>Touched</span>
         <pre>{{ miFormulario.touched }}</pre>
+
+        <span>CustomDirective</span>
+        <pre>{{ miFormulario.controls.existencias?.errors | json }}</pre>
 
     </div>
 </div>
