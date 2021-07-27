@@ -12,20 +12,21 @@
         <div class="col-sm-9">
             <input class="form-control" 
                    name="nombre"
-                   ngModel
+                   [ngModel]="persona.nombre"
                    type="text"
                    placeholder="Nombre de la persona"
                    required>
             
            <span class="form-text text-danger"
                  *ngIf="miFormulario.controls.nombre?.errors && miFormulario.controls.nombre?.touched" >
-                  El precio debe ser 0 ó mayor
+                  El nombre no puede estar vacío
              </span>       
         </div>
     </div>
 
     <!-- Agregar Favorito-->
     <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar</label>
         <div class="col-sm-9">
             <div class="input-group">
                 <input class="form-control" 
@@ -45,11 +46,11 @@
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Favoritos</label>
         <div class="col-sm-9">
-            <input class="form-control mb-1">
-            <input class="form-control mb-1">
-            <input class="form-control mb-1">
-            <input class="form-control mb-1">
-            
+            <input  *ngFor="let juego of persona.favoritos; let i = index"
+                    [(ngModel)]="juego.nombre"
+                    name="favorito_{{ i }}"
+                    class="form-control mb-1"
+                    required>
    
         </div>
     </div>
@@ -69,3 +70,7 @@
 
 
 </form>
+
+
+<span>Persona</span>
+<pre>{{ persona | json}}</pre>
