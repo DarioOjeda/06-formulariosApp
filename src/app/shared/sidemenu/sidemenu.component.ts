@@ -9,8 +9,11 @@ interface MenuItem {
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
-  styles: [
-  ]
+  styles: [`
+    li {
+      cursor:pointer; 
+    }
+  `]
 })
 export class SidemenuComponent{
 
@@ -25,7 +28,7 @@ export class SidemenuComponent{
     },
     {
       texto: 'Switches',
-      ruta: './template/SWITCHES'
+      ruta: './template/switches'
     }
   ]
 
