@@ -24,20 +24,20 @@ export class BasicosComponent implements OnInit{
   constructor( private fb: FormBuilder ) { }
 
   ngOnInit(): void {
-    // this,this.miFormulario.setValue({
+    // this.miFormulario.setValue({
     //   nombre: 'RTX 3080ti',
     //   precio: 1000,
     //   existencias: 10
     // });
     // Esto revienta si algunos de los valores necesarios no es proveido
-    this,this.miFormulario.reset({
+    this.miFormulario.reset({
       nombre: 'RTX 3080ti',
       precio: 1000,
       existencias: 10
     });
   }
 
-  campoEsValido( campo: string) {
+  campoEsValido( campo: string): boolean | null {
     return this.miFormulario.controls[campo].errors 
     && this.miFormulario.controls[campo].touched;
   }
