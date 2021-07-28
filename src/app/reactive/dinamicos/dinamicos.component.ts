@@ -15,6 +15,7 @@ export class DinamicosComponent{
        [ 'Metal Gear', Validators.required ],
        [ 'Hollow Knight', Validators.required],
      ], Validators.required )
+    //  esta ultima restriccion determina que al menos debe haber un formcontrol
     });
 
   nuevoFavorito: FormControl = this.fb.control('', Validators.required)
@@ -30,6 +31,7 @@ export class DinamicosComponent{
       return;
     }
     console.log(this.miFormulario.value)
+    
     this.miFormulario.reset();
   }
 
@@ -47,4 +49,7 @@ export class DinamicosComponent{
     this.nuevoFavorito.reset();
   }
 
+  borrar(index: number) {
+    this.favoritosArr.removeAt(index)
+  }
 }
