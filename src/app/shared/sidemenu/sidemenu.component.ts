@@ -43,7 +43,7 @@ export class SidemenuComponent{
     },
     {
       texto: 'Switches',
-      ruta: './reactive/SWITCHES'
+      ruta: './reactive/switches'
     }
   ]
 
