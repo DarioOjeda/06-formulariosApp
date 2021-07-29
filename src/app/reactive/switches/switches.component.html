@@ -1,7 +1,8 @@
 <h2>Reactivos: Switches</h2>
 <hr>
 
-<form [formGroup]="miFormulario">
+<form [formGroup]="miFormulario"
+      (ngSubmit)="guardar()">
     
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Género</label>
@@ -71,6 +72,7 @@
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end"
+                    type="submit"
                     [disabled]="!miFormulario.valid">
                 Guardar
             </button>
@@ -91,7 +93,7 @@
 <pre>{{ miFormulario.valid }}</pre>
 <br>
 
-<h5>Términos</h5>
+
 <!-- <pre>{{ miFormulario.controls?.terminos?.errors | json }}</pre> -->
 <!-- <br>
 

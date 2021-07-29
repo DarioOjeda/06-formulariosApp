@@ -32,7 +32,29 @@ export class SwitchesComponent implements OnInit {
   //  este reset del oninit pone a null cualquier valor 
   // que no de la persona, en este caso, las condiciones y asi se mostrara al refrescar la pagina
   //en otras palabras, los valores por defecto de los controles del formgroup no sirven en este caso para nada
-   
+  
+  // ***** Con esto puedo suscribirme a los cambios en un campo en particular
+  
+  // this.miFormulario.get('condiciones')?.valueChanges.subscribe( form => {
+  //   console.log(form);
+  // });
+
+  // ***** Y con este a los cambios en cualquier parte del formulario
+
+  this.miFormulario.valueChanges.subscribe( ({ condiciones, ...rest}) => {
+    // delete form.condiciones;
+    this.persona = rest;
+  });
+ }
+
+ guardar() {
+
+  const formValue= {...this.miFormulario.value};
+  delete formValue.condiciones;
+  
+  this.persona = formValue;
+
+  
  }
 
 }
