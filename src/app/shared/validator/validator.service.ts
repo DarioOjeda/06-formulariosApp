@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { FormControl, ValidationErrors, AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,15 @@ export class ValidatorService {
       }
     }
     return null;
-}
+  }
+
+  // Si cambia algún campo del formulario, se llama a esta llamada anidada
+  // por eso se dispara varias veces ese console.log
+  camposIguales( campo1: string, campo2: string ) {
+    
+    return ( formGroup: AbstractControl ): ValidationErrors | null => {
+      console.log(formGroup);
+      return null;
+    }
+  }
 }

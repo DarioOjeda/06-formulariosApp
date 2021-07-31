@@ -16,6 +16,10 @@ export class RegistroComponent implements OnInit {
     email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern) ] ],
     // Podriamos usar el Validators.email, pero F Herrera no se fía de esa validación.
     username: ['',[Validators.required, this.vs.noPuedeSerCabesa ], ],
+    password: ['',[Validators.required, Validators.minLength(6)], ],
+    password2: ['',[Validators.required ], ],
+  },/*Opciones que le podemos mandar al form group*/ {
+    validators: [this.vs.camposIguales('password','password2')]
   })
 
   constructor( private fb: FormBuilder,
