@@ -14,4 +14,4 @@ export const noPuedeSerCabesa = ( control: FormControl ) => {
     }
     return null;
     // Si se retorna un null en una validación, eso quiere decir que no hubo ningún error
-  }
+}

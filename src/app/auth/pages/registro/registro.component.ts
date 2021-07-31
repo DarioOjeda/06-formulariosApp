@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { emailPattern, nombreApellidoPattern, noPuedeSerCabesa } from 'src/app/shared/validator/validaciones';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,13 +12,14 @@ import { emailPattern, nombreApellidoPattern, noPuedeSerCabesa } from 'src/app/s
 export class RegistroComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.pattern(nombreApellidoPattern)] ],
-    email: ['', [Validators.required, Validators.pattern(emailPattern) ] ],
+    nombre: ['', [Validators.required, Validators.pattern(this.vs.nombreApellidoPattern)] ],
+    email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern) ] ],
     // Podriamos usar el Validators.email, pero F Herrera no se fía de esa validación.
-    username: ['',[Validators.required, noPuedeSerCabesa ], ],
+    username: ['',[Validators.required, this.vs.noPuedeSerCabesa ], ],
   })
 
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder,
+               private vs: ValidatorService ) { }
 
   ngOnInit(): void {
     this.miFormulario.reset({
