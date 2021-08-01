@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { emailPattern, nombreApellidoPattern, noPuedeSerCabesa } from 'src/app/shared/validator/validaciones';
 import { ValidatorService } from '../../../shared/validator/validator.service';
+import { EmailValidatorService } from '../../../shared/validator/email-validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -13,23 +14,26 @@ export class RegistroComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.pattern(this.vs.nombreApellidoPattern)] ],
-    email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern) ] ],
+    email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern) ], [ this.emailValidator ] ],
     // Podriamos usar el Validators.email, pero F Herrera no se fía de esa validación.
     username: ['',[Validators.required, this.vs.noPuedeSerCabesa ], ],
     password: ['',[Validators.required, Validators.minLength(6)], ],
-    password2: ['',[Validators.required ], ],
+    password2: ['', ],
   },/*Opciones que le podemos mandar al form group*/ {
     validators: [this.vs.camposIguales('password','password2')]
   })
 
   constructor( private fb: FormBuilder,
-               private vs: ValidatorService ) { }
+               private vs: ValidatorService,
+               private emailValidator: EmailValidatorService ) { }
 
   ngOnInit(): void {
     this.miFormulario.reset({
       nombre: 'Dario Ojeda',
-      email: 'dario_1887@gmail.com',
-      username: 'Cabesita'
+      email: 'test1@test.com',
+      username: 'Cabesita',
+      password: '123456',
+      password2: '123456',
     })
   }
 
